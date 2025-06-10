@@ -1,9 +1,14 @@
-// Wait for the DOM to load
+// Wait for the DOM to load and AR.js to initialize
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize variables
     let isInfoVisible = false;
     const infoPanel = document.getElementById('info-panel');
     const loadingScreen = document.querySelector('.loading-screen');
+
+    // Hide loading screen immediately
+    if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+    }
 
     // Add marker detection event listeners
     const markers = document.querySelectorAll('a-marker');
