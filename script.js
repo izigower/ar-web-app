@@ -1,5 +1,19 @@
 // Wait for the DOM to load and AR.js to initialize
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if camera access is available
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+            .then(function(stream) {
+                console.log('Camera access granted');
+            })
+            .catch(function(err) {
+                console.error('Camera access denied:', err);
+                alert('Veuillez autoriser l\'accès à la caméra pour utiliser l\'AR');
+            });
+    } else {
+        console.error('getUserMedia is not supported');
+        alert('Votre navigateur ne supporte pas l\'accès à la caméra');
+    }
     // Initialize variables
     let isInfoVisible = false;
     const infoPanel = document.getElementById('info-panel');
